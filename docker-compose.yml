@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    container_name: nginx-container
+    depends_on:
+      - php-fpm
+    env_file:
+    - .env
+    volumes:
+      - "/etc/localtime:/etc/localtime"
+      - "./src:/tire"
+    networks:
+      - network
+    ports:
+      - "80:80"
+
+  php-fpm:
+    build:
+      context: ./src
+      dockerfile: ./.docker/Dockerfile
+      args:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    container_name: php-fpm-container
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      - "/etc/localtime:/etc/localtime"
+      - "./src:/tire"
+    networks:
+      - network
+    ports:
+      - "9000:9000"
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb-container
+    env_file:
+      - .env
+    networks:
+      - network
+    volumes:
+      - "/etc/localtime:/etc/localtime"
+      - "mariadb:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  mariadb:
