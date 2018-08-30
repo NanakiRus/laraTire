@@ -114,7 +114,7 @@ class CategoryController extends Controller
                     });
             });
             $form->input('sort');
-            $form->textarea('text', 'Описание');
+            $form->editor('text', 'Описание');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

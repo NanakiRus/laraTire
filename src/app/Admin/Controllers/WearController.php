@@ -24,7 +24,7 @@ class WearController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
+            $content->header('Износ');
             $content->description('description');
 
             $content->body($this->grid());
@@ -74,6 +74,11 @@ class WearController extends Controller
         return Admin::grid(Wear::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->column('percent_interval', 'Интервал в процентах');
+
+            $grid->actions(function ($action) {
+                $action->disableView();
+            });
 
             $grid->created_at();
             $grid->updated_at();
@@ -90,6 +95,7 @@ class WearController extends Controller
         return Admin::form(Wear::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('percent_interval', 'Интервал в процентах');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

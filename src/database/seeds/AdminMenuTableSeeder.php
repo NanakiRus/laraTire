@@ -65,43 +65,57 @@ class AdminMenuTableSeeder extends Seeder
                 'uri'       => 'auth/logs',
             ],
             [
+              'parent_id' => 0,
+              'order' => 8,
+              'title' => 'Категории',
+              'icon' => 'fa-list',
+              'url' => 'category'
+            ],
+            [
                 'parent_id' => 0,
-                'order' => 8,
+                'order' => 9,
                 'title' => 'Товары',
                 'icon' => 'fa-shopping-basket',
                 'url' => ''
             ],
             [
-                'parent_id' => 8,
-                'order' => 9,
+                'parent_id' => 9,
+                'order' => 10,
                 'title' => 'Карточки товаров',
                 'icon' => 'fa-shopping-cart',
                 'url' => 'products'
             ],
             [
-                'parent_id' => 8,
-                'order' => 10,
+                'parent_id' => 9,
+                'order' => 11,
                 'title' => 'Диаметр',
                 'icon' => 'fa-circle-o',
                 'url' => 'dia',
             ],
             [
-                'parent_id' => 8,
-                'order' => 11,
+                'parent_id' => 9,
+                'order' => 12,
                 'title' => 'Типоразмер',
                 'icon' => 'fa-arrows-v',
                 'url' => 'sizes'
             ],
             [
-                'parent_id' => 8,
-                'order' => 12,
+                'parent_id' => 9,
+                'order' => 13,
                 'title' => 'Производители',
                 'icon' => 'fa-industry',
                 'url' => 'brands',
             ],
             [
-                'parent_id' => 8,
-                'order' => 13,
+                'parent_id' => 9,
+                'order' => 14,
+                'title' => 'Модель',
+                'icon' => 'fa-info-circle',
+                'url' => 'models'
+            ],
+            [
+                'parent_id' => 9,
+                'order' => 15,
                 'title' => 'Износ',
                 'icon' => 'fa-circle-o-notch',
                 'url' => 'wears'

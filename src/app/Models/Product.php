@@ -31,6 +31,11 @@ class Product extends Model
         return $this->hasOne(Brand::class);
     }
 
+    public function type()
+    {
+        return $this->hasOne(Type::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -74,6 +74,11 @@ class BrandController extends Controller
         return Admin::grid(Brand::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->column('name');
+
+            $grid->actions(function ($action) {
+                $action->disableView();
+            });
 
             $grid->created_at();
             $grid->updated_at();
@@ -90,6 +95,7 @@ class BrandController extends Controller
         return Admin::form(Brand::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('name');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

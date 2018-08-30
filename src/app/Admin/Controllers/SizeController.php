@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Dia;
 use App\Models\Size;
-
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -74,8 +74,14 @@ class SizeController extends Controller
         return Admin::grid(Size::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->colmn('size')->display(function () {
+                return $this->width . '/' . $this->height;
+            });
+            $grid->dia()->dia();
 
-            \dd($grid->model()->collection());
+            $grid->actions(function ($action) {
+                $action->disableView();
+            });
 
             $grid->created_at();
             $grid->updated_at();
@@ -92,6 +98,13 @@ class SizeController extends Controller
         return Admin::form(Size::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('width');
+            $form->text('height');
+            $form->select('dia_id')->options(function () {
+                return Dia::all()->mapWithKeys(function ($item) {
+                    return [$item->id => $item->dia];
+                });
+            });
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
